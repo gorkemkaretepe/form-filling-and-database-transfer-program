@@ -1,0 +1,42 @@
+2.page = form2_test.py
+
+		
+from form2 import *
+print("LEGAL ENTITY FORM : \nPress q to exit.")
+depo=Depo()
+while True:
+    sec=input("Press 1 to fill in the form: ")
+
+    if sec=="q":
+        print("Program ended.")
+        break
+    elif sec=="1":
+        official_name= input("OFFICIAL NAME: ")
+        business_name= input("BUSINESS NAME: ")
+        abbreviation= input("ABBREVIATION: ")
+        legal_form= input("LEGAL FORM: ")
+        organısatıon_type_for_profit = input("ORGANISATION TYPE FOR PROFIT(yes or no): ")
+        organısatıon_type_non_for_profit = input("ORGANISATION TYPE NON FOR PROFIT(yes or no):")
+        main_regıstratıon_number = input("MAIN REGISTRATION NUMBER: ")
+        secondary_registration_number = input("SECONDARY REGISTRATION NUMBER: ")
+        place_of_main_registration_city = input("PLACE OF MAIN REGISTRATION CİTY: ")
+        place_of_main_registration_country = input("PLACE OF MAIN REGISTRATION COUNTRY: ")
+        date_of_main_registration = input("DATE OF MAIN REGISTRATION: ")
+        vat_number = input("VAT NUMBER:")
+        address_of_head_office = input("ADDRESS OF HEAD OFFICE:")
+        postcode = input("POSTCODE:")
+        po_box = input("P.O.BOX:")
+        city = input("CITY:")
+        country = input("COUNTRY:")
+        phone = input("PHONE:")
+        e_mail = input("E-MAIL:")
+        date = input("DATE:")
+
+
+        new_form=form2(official_name,business_name,abbreviation,legal_form,organısatıon_type_for_profit,organısatıon_type_non_for_profit,main_regıstratıon_number,secondary_registration_number,place_of_main_registration_city,place_of_main_registration_country,date_of_main_registration,vat_number,address_of_head_office,postcode,po_box,city,country,phone,e_mail,date)
+        print("adding form..")
+        time.sleep(2)
+        depo.form_add(new_form)
+        print(official_name,"your form has been added")
+    else:
+        print("wrong function.")

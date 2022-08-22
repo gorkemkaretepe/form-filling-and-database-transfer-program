@@ -1,0 +1,98 @@
+1.page = form2database.py
+
+import sqlite3
+import random
+import time
+class form2:
+    def __init__(self,official_name,business_name,abbreviation,legal_form,organısatıon_type_for_profit,organısatıon_type_non_for_profit,main_regıstratıon_number,secondary_registration_number,place_of_main_registration_city,place_of_main_registration_country,date_of_main_registration,vat_number,address_of_head_office,postcode,po_box,city,country,phone,e_mail,date):
+        self.official_name=official_name
+        self.business_name=business_name
+        self.abbreviation=abbreviation
+        self.legal_form=legal_form
+        self.organısatıon_type_for_profit=organısatıon_type_for_profit
+        self.organısatıon_type_non_for_profit=organısatıon_type_non_for_profit
+        self.main_regıstratıon_number=main_regıstratıon_number
+        self.secondary_registration_number=secondary_registration_number
+        self.place_of_main_registration_city=place_of_main_registration_city
+        self.place_of_main_registration_country=place_of_main_registration_country
+        self.date_of_main_registration=date_of_main_registration
+        self.vat_number=vat_number
+        self.address_of_head_office=address_of_head_office
+        self.postcode=postcode
+        self.po_box=po_box
+        self.city=city
+        self.country=country
+        self.phone=phone
+        self.e_mail=e_mail
+        self.date=date
+
+    def __str__(self):
+        return "Formun adı: {}\nOFFICIAL NAME: {}\nBUSINESS NAME: {}\nABBREVIATION: {}\n LEGAL FORM: {}\nORGANISATION TYPE FOR PROFIT(yes or no): {}\nORGANISATION TYPE NON FOR PROFIT(yes or no):   {}\nMAIN REGISTRATION NUMBER:  {}\nSECONDARY REGISTRATION NUMBER: {}\nPLACE OF MAIN REGISTRATION CİTY: {}\nPLACE OF MAIN REGISTRATION COUNTRY:{}\nDATE OF MAIN REGISTRATION:{}\nVAT NUMBER:{}\nADDRESS OF HEAD OFFICE:{}\nPOSTCODE: {}\nP.O.BOX:  {}\nCITY:  {}\nCOUNTRY:  {}\nPHONE:  {}\nE-MAIL:  {}\nDATE: " .format(self.official_name,self.business_name,self.abbreviation,self.legal_form,self.organısatıon_type_for_profit,self.organısatıon_type_non_for_profit,self.main_regıstratıon_number,self.secondary_registration_number,self.place_of_main_registration_city,self.place_of_main_registration_country,self.date_of_main_registration,self.vat_number,self.address_of_head_office,self.postcode,self.po_box,self.city,self.country,self.phone, self.e_mail,self.date)
+
+class Depo:
+    def __init__(self):
+        self.create_connection()
+
+    def create_connection(self):
+        self.connection=sqlite3.connect("form2.db")
+        self.cursor=self.connection.cursor()
+        sorgu="Create Table if not exists form(official_name TEXT,business_name TEXT,abbreviation TEXT,legal_form TEXT,organısatıon_type_for_profit TEXT,organısatıon_type_non_for_profit TEXT,main_regıstratıon_number İNT,secondary_registration_number İNT,place_of_main_registration_city TEXT,place_of_main_registration_country TEXT,date_of_main_registration İNT,vat_number İNT,address_of_head_office TEXT,postcode İNT,po_box TEXT,city TEXT,country TEXT,phone İNT,e_mail TEXT,date TEXT )"
+        self.cursor.execute(sorgu)
+        self.connection.commit()
+    def close_connection(self):
+        self.connection.close()
+
+    def info(self):
+        sorgu="Select * from form"  #burada kullanılmasa da olur.
+        self.cursor.execute(sorgu)
+        form=self.cursor.fetchall() #fetchall ile verileri form adlı değişkene atadım.
+
+    def form_add(self,form):
+        sorgu="Insert into form Values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+        self.cursor.execute(sorgu,(form.official_name,form.business_name,form.abbreviation,form.legal_form,form.organısatıon_type_for_profit,form.organısatıon_type_non_for_profit,form.main_regıstratıon_number,form.secondary_registration_number,form.place_of_main_registration_city,form.place_of_main_registration_country,form.date_of_main_registration,form.vat_number,form.address_of_head_office,form.postcode,form.po_box,form.city,form.country,form.phone,form.e_mail,form.date))
+        self.connection.commit()
+		
+	
+	
+2.page = form2_test.py
+
+		
+from form2 import *
+print("LEGAL ENTITY FORM : \nPress q to exit.")
+depo=Depo()
+while True:
+    sec=input("Press 1 to fill in the form: ")
+
+    if sec=="q":
+        print("Program ended.")
+        break
+    elif sec=="1":
+        official_name= input("OFFICIAL NAME: ")
+        business_name= input("BUSINESS NAME: ")
+        abbreviation= input("ABBREVIATION: ")
+        legal_form= input("LEGAL FORM: ")
+        organısatıon_type_for_profit = input("ORGANISATION TYPE FOR PROFIT(yes or no): ")
+        organısatıon_type_non_for_profit = input("ORGANISATION TYPE NON FOR PROFIT(yes or no):")
+        main_regıstratıon_number = input("MAIN REGISTRATION NUMBER: ")
+        secondary_registration_number = input("SECONDARY REGISTRATION NUMBER: ")
+        place_of_main_registration_city = input("PLACE OF MAIN REGISTRATION CİTY: ")
+        place_of_main_registration_country = input("PLACE OF MAIN REGISTRATION COUNTRY: ")
+        date_of_main_registration = input("DATE OF MAIN REGISTRATION: ")
+        vat_number = input("VAT NUMBER:")
+        address_of_head_office = input("ADDRESS OF HEAD OFFICE:")
+        postcode = input("POSTCODE:")
+        po_box = input("P.O.BOX:")
+        city = input("CITY:")
+        country = input("COUNTRY:")
+        phone = input("PHONE:")
+        e_mail = input("E-MAIL:")
+        date = input("DATE:")
+
+
+        new_form=form2(official_name,business_name,abbreviation,legal_form,organısatıon_type_for_profit,organısatıon_type_non_for_profit,main_regıstratıon_number,secondary_registration_number,place_of_main_registration_city,place_of_main_registration_country,date_of_main_registration,vat_number,address_of_head_office,postcode,po_box,city,country,phone,e_mail,date)
+        print("adding form..")
+        time.sleep(2)
+        depo.form_add(new_form)
+        print(official_name,"your form has been added")
+    else:
+        print("wrong function.")
