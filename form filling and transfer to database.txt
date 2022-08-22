@@ -42,10 +42,6 @@ class Depo:
     def close_connection(self):
         self.connection.close()
 
-    def info(self):
-        sorgu="Select * from form"  #burada kullanılmasa da olur.
-        self.cursor.execute(sorgu)
-        form=self.cursor.fetchall() #fetchall ile verileri form adlı değişkene atadım.
 
     def form_add(self,form):
         sorgu="Insert into form Values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
